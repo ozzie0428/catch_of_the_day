@@ -5,15 +5,20 @@ export default class Order extends Component {
   renderOrder = key => {
     const fish = this.props.fishes[key];
     const count = this.props.order[key];
-    const isAvailable = fish.status === "available";
-    if(!isAvailable) {
-        return (
-    <li key={key}>
+    const isAvailable = fish && fish.status === "available";
+    if (!isAvailable) {
+      return (
+        <li key={key}>
           sorry {fish ? fish.name : "fish"} is no longer available
-    </li>)
+        </li>
+      );
     }
-    return  <li key={key}>{count} lbs {fish.name} {formatPrice(count * fish.price)}</li>
-    ;
+    return (
+      <li key={key}>
+        {count} lbs {fish.name} {formatPrice(count * fish.price)}
+        <button onClick={()=> this.props.removeFromOrder(key)}>&times;</button>
+      </li>
+    );
   };
   render() {
     const orderIds = Object.keys(this.props.order);
