@@ -1,18 +1,22 @@
 import React from "react";
-import { getFunName } from '../helpers'
+import PropTypes from "prop-types";
+import { getFunName } from "../helpers";
 
 class StorePicker extends React.Component {
-    myInput = React.createRef()
-  
-    goToStore = (e) => {
-    
+  static propTypes = {
+    history: PropTypes.object
+  };
+
+  myInput = React.createRef();
+
+  goToStore = e => {
     // Stop the form from submitting
-    e.preventDefault()
+    e.preventDefault();
     //  get the text from that input
-    const storeName = (this.myInput.current.value)
+    const storeName = this.myInput.current.value;
     // change the page to /store/whatever-they-entered
-     this.props.history.push(`/store/${storeName}`)
-  }
+    this.props.history.push(`/store/${storeName}`);
+  };
 
   render() {
     return (
