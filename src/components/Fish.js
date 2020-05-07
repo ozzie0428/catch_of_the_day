@@ -28,6 +28,7 @@ export default class Fish extends Component {
         </h3>
         <p>{desc}</p>
         <button disabled={!isAvailable} onClick={this.handleClick}>
+          {/* OR..... onClick={()=> this.props.addToOrder(this.props.index)} */}
           {isAvailable ? "Add To Order" : "Sold Out"}
         </button>
       </li>
